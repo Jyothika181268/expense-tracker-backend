@@ -5,7 +5,10 @@ import com.demo.demo.model.Category;
 import com.demo.demo.model.Expense;
 import com.demo.demo.repository.CategoryRepository;
 import com.demo.demo.repository.ExpenseRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ExpenseService {
@@ -38,5 +41,10 @@ public class ExpenseService {
         expense.setExpenseDate(request.getExpenseDate());
 
         return expenseRepository.save(expense);
+    }
+    public List<Expense> getAllExpenses() {
+        return expenseRepository.findAll(
+                Sort.by(Sort.Direction.DESC, "expenseDate")
+        );
     }
 }

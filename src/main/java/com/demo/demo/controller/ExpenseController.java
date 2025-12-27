@@ -6,6 +6,8 @@ import com.demo.demo.service.ExpenseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/expenses")
 public class ExpenseController {
@@ -20,5 +22,9 @@ public class ExpenseController {
     @ResponseStatus(HttpStatus.CREATED)
     public Expense addExpense(@RequestBody CreateExpenseRequest request) {
         return expenseService.createExpense(request);
+    }
+    @GetMapping
+    public List<Expense> getAllExpenses() {
+        return expenseService.getAllExpenses();
     }
 }
